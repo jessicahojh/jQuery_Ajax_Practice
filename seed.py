@@ -5,11 +5,11 @@ from server import app
 
 def load_customers():
 
-    c_1 = User(name="Jess", drink="Boba")
-    c_2 = User(name="TK", drink="Coffee")
+    c_1 = Customer(name="Jess", drink="Boba")
+    c_2 = Customer(name="TK", drink="Coffee")
 
     db.session.add(c_1)
-    db.session.add(c_1)
+    db.session.add(c_2)
     db.session.commit()
 
 

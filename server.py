@@ -1,16 +1,12 @@
 from jinja2 import StrictUndefined
-
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 # from flask_debugtoolbar import DebugToolbarExtension
-
 from model import connect_to_db, db, Customer
 
-import requests
+# import requests
 import json
 
 
-# from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class
-# from flask_dropzone import Dropzone
 
 
 app = Flask(__name__)
@@ -28,6 +24,21 @@ def main():
     """Homepage."""
 
     return render_template("main.html")
+
+@app.route('/api/orders.json')
+def orders():
+
+
+    customers = [
+        {   "id": customer.c_id,
+            "name": customer.name,
+            "drink": customer.drink
+        }
+        for customer in Customer.query.all()]
+    
+
+    return jsonify(customers)
+
 
 
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Cafe </title>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+</head>
+<body>
+    <h1>
+        Drink Orders
+    </h1>
+    <ul id='orders'>
+
+
+    <h2>
+        Add a drink order
+    </h2>
+    <p>name: <input type="text" id="name"></p>
+    <p>drink: <input type="text" id="drink"></p>
+    <button id="add-order">Add!</button>
+
+    <script src="/jQuery/dist/jquery.js"></script>
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(function (){
+
+            var $orders = $('#orders');
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/orders.json',
+                success: function(orders) {
+                    $.each(orders, function(i, order) {
+                        $orders.append('<li>Name: '+ order.name +', Drink: '+ order.drink + '</li>');
+                    });
+                }
+            });
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
